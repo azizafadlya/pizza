@@ -20,7 +20,26 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Pizza</div>
-
+                @if (count($errors) > 0)
+                <div class="card mt-5">
+                    <div class="card-body">
+                        
+                        @if (count($errors) > 0)
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                       <p> {{ $error }}<p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        
+                    </div>
+                </div>
+                @endif
+                <form action="{{ route('pizza.store') }}" method="post" enctype="multipart/form-data">@csrf
                 <div class="card-body">
                     <div class="form-group">
                    <label for="name">name of pizza</label>
@@ -33,13 +52,13 @@
                     <div class="form-inline">
                         
                         <label>pizza price($)</label>
-                        <input type="number" class="form-control" placeholder="small pizza price">
-                        <input type="number" class="form-control" placeholder="medium pizza price">
-                        <input type="number" class="form-control" placeholder="large pizza price">
+                        <input type="number"  name="small pizza price" class="form-control" placeholder="small pizza price">
+                        <input type="number"  name="medium  pizza price"class="form-control" placeholder="medium pizza price">
+                        <input type="number"  name="large pizza price"class="form-control" placeholder="large pizza price">
                      </div> 
                      <div class="form-group">
                         <label for="description">Category</label>
-                        <select class="form-control">
+                        <select class="form-control" name="Category">
                             <option value=""></option>
                             <option value="vegetarian">vegetarian pizza</option>
                             <option value="nonvegetarian">Non vegetarian pizza</option>
@@ -47,7 +66,7 @@
                          </select>
                          <div class="form-group">
                             <label>Image</label>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" name="image" class="form-control" name="image">
                         </div>
                         <div class="form-group text-center" >
                             <button class="btn btn-primary" type="submit">Save</label>
