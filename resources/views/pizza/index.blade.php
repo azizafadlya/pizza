@@ -8,14 +8,15 @@
                 <div class="card-header">All Pizza</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('message'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('message') }}
                         </div>
                     @endif
 
                     
                 </div>
+            
             </div>
         </div>
     </div>
