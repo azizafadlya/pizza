@@ -5,8 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">All Pizza</div>
-
+                <div class="card-header">All Pizza
+                <a href="{{ route('pizza.create') }}">
+                    <button class="btn btn-success" style="float: right">Add pizza</button>
+                </a>
+            </div>
                 <div class="card-body">
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
@@ -29,6 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($pizzas) > 0)
                             @foreach ($pizzas as $key => $pizza)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
@@ -39,11 +43,25 @@
                                 <td>{{ $pizza->small_pizza_price }}</td>
                                 <td>{{ $pizza->medium_pizza_price }}</td>
                                 <td>{{ $pizza->large_pizza_price }}</td>
-                                <td><button class="btn btn-primary">Edit</button></td>
-                        <td><button class="btn btn-danger" >Delete</button></td>
-                            </tr>
+                                <td><a href="{{ route('pizza.edit', $pizza->id) }}"><button
+                                    class="btn btn-primary">Edit</button></a></td>
+                                    
+                         
+                                    <form action="{{ route('pizza.destroy', $pizza->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <td><a href="{{ route('pizza.destroy', $pizza->id) }}"><button
+                                            class="btn btn-danger">DELETE</button></a></td>
+                                    </form>
+                                </tr>
                             @endforeach
+                           
+                            @else
+                            <p>No pizza to show</p>
+                        @endif
                         </tbody>
+                    </table>
+                    {{ $pizzas->links()}}
                 </div>
             
             </div>
