@@ -25,6 +25,7 @@ class AddPhoneToOrders extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('phone');
         });

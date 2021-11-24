@@ -13,6 +13,7 @@ class CreatePizzasTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('pizzas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -33,6 +34,9 @@ class CreatePizzasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('pizzas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

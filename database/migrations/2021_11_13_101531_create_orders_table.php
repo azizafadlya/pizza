@@ -13,17 +13,19 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('date');
             $table->string('time');
-            $table->integer('pizza_id');
+            $table->unsignedBigInteger('pizza_id');
             $table->string('small_pizza')->defualt(0);
             $table->string('medium_pizza')->defualt(0);
             $table->string('large_pizza')->defualt(0);
             $table->text('body');
             $table->string('status')->default('pending');
+            $table->foreign('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +37,7 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        
         Schema::dropIfExists('orders');
     }
 }

@@ -65,6 +65,15 @@
                             <option value="vegetarian">Vegetarian Pizza</option>
                             <option value="nonvegetarian">Non vegetarian Pizza</option>
                             <option value="traditional">Traditional Pizza</option>
+                            <option value="peri peri chicken">Peri peri chicken</option>
+                            <option value="garlic PRAWN">Garlic PRAWN</option>
+                            <option value="chicken & Camembert">Chicken & Camembert</option>
+                            <option value="loaded pepperoni">Loaded pepperoni</option>
+                            <option value="Spicy peppy paneer">Spicy peppy paneer</option>
+                            <option value="Spicy pepperoni">Spicy pepperoni</option>
+                            <option value="Vegi pepperoni">Vegi pepperoni</option>
+
+
                         </select>
                      </div>
                          <div class="form-group">

@@ -26,7 +26,8 @@
         </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">pizza</div>
+                <div class="card-header">Pizza({{count($pizzas)}} pizza)</div>
+
                 <div class="card-body">
                     <div class="row">
                         @forelse ($pizzas as $pizza )

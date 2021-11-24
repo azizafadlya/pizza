@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\PizzaStoreRequest;
 use App\Http\Requests\PizzaUpdateRequest;
 use App\Models\Pizza;
@@ -26,7 +27,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        return view ("pizza.create");
+        return view('pizza.create');
     }
 
     /**
@@ -38,7 +39,6 @@ class PizzaController extends Controller
     public function store(PizzaStoreRequest $request)
     {
         $path = $request->image->store('public/pizza');
-  
         Pizza::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -70,7 +70,6 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        
         $pizza = Pizza::find($id);
         return view('pizza.edit',compact('pizza'));
     }
@@ -90,7 +89,7 @@ class PizzaController extends Controller
         }else{
            $path =  $pizza->image;
         }
-        $pizza = new Pizza; 
+        //$pizza = new Pizza; 
         $pizza->name = $request->name;
         $pizza->description = $request->description;
         $pizza->small_pizza_price = $request->small_pizza_price;
@@ -100,6 +99,8 @@ class PizzaController extends Controller
         $pizza->image = $path;
         $pizza->save();
         return redirect()->route('pizza.index')->with('message','Pizza update successfully!');
+
+
     }
 
     /**
@@ -112,5 +113,6 @@ class PizzaController extends Controller
     {
         Pizza::find($id)->delete();
         return redirect()->route('pizza.index')->with('message','Pizza delete successfully!');
+
     }
 }
